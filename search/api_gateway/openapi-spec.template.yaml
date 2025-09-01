@@ -1,0 +1,52 @@
+swagger: '2.0'
+info:
+  title: Custom Search API for Gemini Grounding
+  description: Wraps an internal search function, secured by API Key for Gemini.
+  version: 1.0.0
+schemes:
+  - https
+produces:
+  - application/json
+consumes:
+  - application/json
+paths:
+  /search:
+    post:
+      summary: Custom search endpoint for Gemini
+      operationId: customSearchForGemini
+      x-google-backend:
+        address: ${CLOUD_FUNCTION_URL}
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              query:
+                type: string
+      security:
+        - api_key_query: []
+      responses:
+        '200':
+          description: Search results
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                snippet:
+                  type: string
+                uri:
+                  type: string
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized (Missing or invalid API key)
+        '500':
+          description: Internal server error
+securityDefinitions:
+  api_key_query:
+    type: apiKey
+    name: key
+    in: query
