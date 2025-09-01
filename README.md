@@ -1,10 +1,24 @@
 # Grounded Generation with Custom Search
 
-This example demonstrates how to use the Gemini API with a custom search provider to ground generation results.
+This example demonstrates how to use the Gemini API with a custom search provider to ground generation results. 
+
+## Services Used
+
+This example uses the following **Google Cloud** services:
+
+- **[Google Gemini](https://cloud.google.com/vertex-ai/generative-ai/docs/grounding/grounding-with-your-search-api)** (with custom Search Grounding): The LLM being grounded
+- **[Google Cloud Functions](https://cloud.google.com/functions):** To create a custom search provider
+- **[Google Cloud API Gateway](https://cloud.google.com/api-gateway):** To expose the Cloud Function as a managed and protected API
+
+In addition, the example uses one of the following search engines for web search:
+- [Brave Search API](https://brave.com/search/api/)
+- [Parallel Search](https://docs.parallel.ai/search-api/search-quickstart) 
+- [Tavily Search](https://docs.tavily.com/documentation/api-reference/endpoint/search)
 
 ## How to Run
 
 First, clone the repository. This example will be easiest to run on the [Google Cloud Shell](https://cloud.google.com/shell/docs)
+
 ```
 git clone https://github.com/anihm136/gemini-search-grounding.git
 ```
@@ -37,8 +51,8 @@ The `main.py` script shows how to use the custom search service with the Gemini 
 
 Before running the script, you need to update the following variables in `main.py` with the values from the previous step:
 
--   `SEARCH_ENDPOINT`: The URL of the API Gateway
--   `SEARCH_API_KEY`: The API key you created
+- `SEARCH_ENDPOINT`: The URL of the API Gateway
+- `SEARCH_API_KEY`: The API key you created
 
 Once you have updated the variables, you can run the script:
 
